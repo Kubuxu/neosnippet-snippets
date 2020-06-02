@@ -32,7 +32,7 @@ function! g:NeosnippetSnippets_Goiferr() abort
   let rets = []
   for t in split(ret, ',')
     if t =~# '\v^\s*error\s*$'
-      let v = 'err'
+      let v = 'xerrors.Errorf("${1}: %w", err)'
     elseif t =~# '\v^\s*string\s*$'
       let v = '"${1\}"'
     elseif t =~# '\v^\s*int\d*\s*$'
@@ -45,5 +45,5 @@ function! g:NeosnippetSnippets_Goiferr() abort
     call add(rets, v)
   endfor
 
-  return '${1:' . join(rets, ", ") . '${0\}}'
+  return join(rets, ", ")
 endfunction
